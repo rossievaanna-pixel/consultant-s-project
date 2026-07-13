@@ -37,6 +37,7 @@
     --color-line:     rgba(26, 26, 26, 0.15); /* тонкие линии-разделители на бежевом */
     --color-card-a:   #F4EFE6; /* светлая карточка (тёплый крем) */
     --color-card-b:   #E4D9C4; /* карточка потемнее (тёплый песок) */
+    --color-card-pricing: #FAF7F1; /* карточки тарифов — светлее обычной карточки */
 
     /* --- Скругления --- */
     --radius-btn:   999px; /* кнопки — полностью скруглённые (капсула) */
@@ -141,6 +142,8 @@
   /* Главная кнопка записи — коралловая, скруглённая */
   .btn-primary {
     display: inline-block;
+    flex-shrink: 0; /* не даёт кнопке сжиматься и переносить текст на 2 строки в тесном флексе */
+    white-space: nowrap;
     background-color: var(--color-accent);
     color: var(--color-on-accent);
     font-family: var(--font-body);
@@ -390,6 +393,7 @@
   .hero__cta-group {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 0.9rem;
   }
@@ -414,10 +418,10 @@
   }
 
   .recognize__list li {
-    font-family: var(--font-heading);
-    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-family: var(--font-body); /* единый шрифт с остальным текстом сайта — легче читать, чем засечный */
+    font-size: clamp(1.15rem, 1.8vw, 1.4rem);
     font-weight: 400;
-    line-height: 1.35; /* у крупного засечного шрифта обычный межстрочный (1.65) смотрится слишком просторно */
+    line-height: 1.5;
     max-width: 34em;
     /* маркер — акцентная точка слева, с отступом под текст */
     padding-left: 1.1em;
@@ -437,10 +441,10 @@
 
   .recognize__closing {
     text-align: center;
-    font-family: var(--font-heading);
+    font-family: var(--font-body); /* единый шрифт с остальным текстом сайта */
     font-style: italic;
-    font-size: clamp(1.3rem, 2.6vw, 1.9rem);
-    line-height: 1.35;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    line-height: 1.5;
     max-width: 26em;
     margin: 1.5rem auto 0;
   }
@@ -518,7 +522,7 @@
   }
 
   .pricing-card {
-    background-color: var(--color-card-a);
+    background-color: var(--color-card-pricing);
     border-radius: var(--radius-card);
     padding: clamp(1.75rem, 3vw, 2.5rem);
     display: flex;
