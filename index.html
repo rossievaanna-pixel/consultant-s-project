@@ -219,6 +219,74 @@
   }
 
   /* ==========================================================
+     СВОРАЧИВАЮЩИЕСЯ БЛОКИ (details/summary — без JavaScript)
+     Заголовок кликабелен, справа — плюс, который при открытии
+     превращается в минус. Открыты по умолчанию (атрибут open
+     в HTML) — посетитель видит текст сразу, но может свернуть.
+     ========================================================== */
+  .collapsible__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    list-style: none;
+    cursor: pointer;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .collapsible__summary::-webkit-details-marker {
+    display: none; /* убираем стандартный треугольник-маркер в Safari/Chrome */
+  }
+
+  .collapsible[open] .collapsible__summary {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .collapsible:not([open]) .collapsible__summary {
+    margin-bottom: 0; /* в свёрнутом виде секция не оставляет пустого места снизу */
+  }
+
+  .collapsible__summary h2 {
+    margin-bottom: 0;
+  }
+
+  /* Иконка плюс/минус — две полоски акцентного цвета */
+  .collapsible__icon {
+    position: relative;
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+  }
+
+  .collapsible__icon::before,
+  .collapsible__icon::after {
+    content: "";
+    position: absolute;
+    background-color: var(--color-accent);
+    transition: transform 0.25s ease;
+  }
+
+  .collapsible__icon::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: translateY(-50%);
+  }
+
+  .collapsible__icon::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+
+  .collapsible[open] .collapsible__icon::after {
+    transform: translateX(-50%) rotate(90deg); /* вертикальная полоска ложится на горизонтальную — получается минус */
+  }
+
+  /* ==========================================================
      6. ФОТО-ПЛЕЙСХОЛДЕРЫ
      Пока нет настоящих фото — показываем подпись "фото".
      Как заменить на реальное фото — см. инструкцию в конце
@@ -682,17 +750,20 @@
        ============================================================ -->
   <section class="section section--b" id="recognize">
     <div class="container">
-      <div class="section-head">
-        <h2>Возможно, вы здесь, если</h2>
-      </div>
-      <ul class="recognize__list">
-        <li>Если не получается, а главное, не хочется как раньше.</li>
-        <li>Если внутри слышен ваш голос, и он зовёт вас в новое.</li>
-        <li>Когда вам плохо там, где вы сейчас, но все вокруг говорят, что это с вами что-то не так. А вы в это не верите.</li>
-        <li>Когда важно услышать другую точку зрения, бережную.</li>
-      </ul>
-      <div class="divider">· · ·</div>
-      <p class="recognize__closing">Куда бы вы ни шли, с этим не обязательно разбираться в одиночку.</p>
+      <details class="collapsible" open>
+        <summary class="collapsible__summary">
+          <h2>Возможно, вы здесь, если</h2>
+          <span class="collapsible__icon" aria-hidden="true"></span>
+        </summary>
+        <ul class="recognize__list">
+          <li>Если не получается, а главное, не хочется как раньше.</li>
+          <li>Если внутри слышен ваш голос, и он зовёт вас в новое.</li>
+          <li>Когда вам плохо там, где вы сейчас, но все вокруг говорят, что это с вами что-то не так. А вы в это не верите.</li>
+          <li>Когда важно услышать другую точку зрения, бережную.</li>
+        </ul>
+        <div class="divider">· · ·</div>
+        <p class="recognize__closing">Куда бы вы ни шли, с этим не обязательно разбираться в одиночку.</p>
+      </details>
     </div>
   </section>
 
@@ -701,19 +772,22 @@
        ============================================================ -->
   <section class="section section--a" id="how-i-work">
     <div class="container">
-      <div class="section-head">
-        <h2>Как я работаю</h2>
-      </div>
-      <div class="how-i-work">
-        <div class="how-i-work__text">
-          <p>Я не даю готовых советов. Мой подход психодинамический: мы идём вглубь, к тому, что на самом деле управляет вашими решениями и состоянием.</p>
-          <p>Рядом со мной люди находят свою опору. Начинают видеть связи, которых не замечали, и решаются действовать иначе. Замечают привычки, которые когда-то помогали, а теперь тормозят. И постепенно возвращают себе то, ради чего всё и затевается, удовольствие от жизни.</p>
-          <p>Психодинамическое образование и годы работы руководителем: поэтому со мной можно говорить и о внутреннем, и о реальном, о карьере, отношениях, выборе. Не нужно объяснять, как устроена работа изнутри, я это знаю.</p>
+      <details class="collapsible" open>
+        <summary class="collapsible__summary">
+          <h2>Как я работаю</h2>
+          <span class="collapsible__icon" aria-hidden="true"></span>
+        </summary>
+        <div class="how-i-work">
+          <div class="how-i-work__text">
+            <p>Я не даю готовых советов. Мой подход психодинамический: мы идём вглубь, к тому, что на самом деле управляет вашими решениями и состоянием.</p>
+            <p>Рядом со мной люди находят свою опору. Начинают видеть связи, которых не замечали, и решаются действовать иначе. Замечают привычки, которые когда-то помогали, а теперь тормозят. И постепенно возвращают себе то, ради чего всё и затевается, удовольствие от жизни.</p>
+            <p>Психодинамическое образование и годы работы руководителем: поэтому со мной можно говорить и о внутреннем, и о реальном, о карьере, отношениях, выборе. Не нужно объяснять, как устроена работа изнутри, я это знаю.</p>
+          </div>
+          <div class="how-i-work__photo-wrap">
+            <img class="how-i-work__photo" src="images/how-i-work-v2.png" alt="Анна Россиева">
+          </div>
         </div>
-        <div class="how-i-work__photo-wrap">
-          <img class="how-i-work__photo" src="images/how-i-work-v2.png" alt="Анна Россиева">
-        </div>
-      </div>
+      </details>
     </div>
   </section>
 
