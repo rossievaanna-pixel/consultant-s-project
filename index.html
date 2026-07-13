@@ -407,14 +407,32 @@
     flex-direction: column;
     gap: 1.6rem;
     margin-bottom: 3rem;
+    /* список, а не просто абзацы: сбрасываем стандартные отступы <ul> */
+    list-style: none;
+    margin-top: 0;
+    padding-left: 0;
   }
 
-  .recognize__list p {
+  .recognize__list li {
     font-family: var(--font-heading);
     font-size: clamp(1.3rem, 2.4vw, 1.7rem);
     font-weight: 400;
     line-height: 1.35; /* у крупного засечного шрифта обычный межстрочный (1.65) смотрится слишком просторно */
     max-width: 34em;
+    /* маркер — акцентная точка слева, с отступом под текст */
+    padding-left: 1.1em;
+    position: relative;
+  }
+
+  .recognize__list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 0.4em;
+    height: 0.4em;
+    border-radius: 50%;
+    background-color: var(--color-accent);
   }
 
   .recognize__closing {
@@ -663,12 +681,12 @@
       <div class="section-head">
         <h2>Возможно, вы здесь, если</h2>
       </div>
-      <div class="recognize__list">
-        <p>Если не получается, а главное, не хочется как раньше.</p>
-        <p>Если внутри слышен ваш голос, и он зовёт вас в новое.</p>
-        <p>Когда вам плохо там, где вы сейчас, но все вокруг говорят, что это с вами что-то не так. А вы в это не верите.</p>
-        <p>Когда важно услышать другую точку зрения, бережную.</p>
-      </div>
+      <ul class="recognize__list">
+        <li>Если не получается, а главное, не хочется как раньше.</li>
+        <li>Если внутри слышен ваш голос, и он зовёт вас в новое.</li>
+        <li>Когда вам плохо там, где вы сейчас, но все вокруг говорят, что это с вами что-то не так. А вы в это не верите.</li>
+        <li>Когда важно услышать другую точку зрения, бережную.</li>
+      </ul>
       <div class="divider">· · ·</div>
       <p class="recognize__closing">Куда бы вы ни шли, с этим не обязательно разбираться в одиночку.</p>
     </div>
