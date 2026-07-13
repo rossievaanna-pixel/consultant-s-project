@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анна Россиева — коуч</title>
+
+<!-- Шрифты с Google Fonts: Cormorant Garamond для заголовков, Jost для текста -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+  /* ==========================================================
+     1. НАСТРОЙКИ (ЦВЕТА, ШРИФТЫ, ОТСТУПЫ)
+     Это "пульт управления" всего сайта. Хотите поменять цвет
+     кнопок, фон или отступы между блоками — меняйте значения
+     здесь, и изменения применятся сразу везде по сайту.
+     ========================================================== */
+  :root {
+    /* --- Цвета первого экрана (тёмный, драматичный) --- */
+    --color-hero-bg:     #1A1A1A; /* почти чёрный фон первого экрана */
+
+    /* --- Цвета остальных блоков (тёплый бежевый, как страница книги) --- */
+    --color-bg-a:      #EDE8DF; /* основной бежевый — блоки 3, 5, 7 */
+    --color-bg-b:      #E3DCC8; /* чуть темнее бежевый — блоки 2, 4, 6, для чередования */
+    --color-text:      #1A1A1A; /* тёмный текст на бежевом фоне */
+    --color-text-on-dark: #F5F1E8; /* светлый текст на тёмном фоне (первый экран) */
+
+    /* --- Единственный цветной акцент сайта: тёплый коралл --- */
+    --color-accent:       #FC5F2B;
+    --color-accent-hover: #E14E1D; /* чуть темнее коралл при наведении */
+    --color-on-accent:    #FFFFFF; /* цвет текста на коралловой кнопке */
+
+    /* --- Вспомогательные цвета --- */
+    --color-line:     rgba(26, 26, 26, 0.15); /* тонкие линии-разделители на бежевом */
+    --color-card-a:   #F4EFE6; /* светлая карточка (тёплый крем) */
+    --color-card-b:   #E4D9C4; /* карточка потемнее (тёплый песок) */
+
+    /* --- Скругления --- */
+    --radius-btn:   999px; /* кнопки — полностью скруглённые (капсула) */
+    --radius-card:  18px;  /* карточки */
+    --radius-photo: 8px;   /* фото-плейсхолдеры */
+
+    /* --- Шрифты --- */
+    --font-heading: "Cormorant Garamond", serif;
+    --font-body: "Jost", sans-serif;
+
+    /* --- Размеры и отступы --- */
+    --container-width: 1120px;
+    --section-padding-y: clamp(5rem, 10vw, 9rem);   /* воздух между блоками сверху/снизу */
+    --container-padding-x: clamp(1.5rem, 6vw, 3rem); /* отступы по бокам */
+  }
+
+  /* ==========================================================
+     2. СБРОС БАЗОВЫХ СТИЛЕЙ
+     ========================================================== */
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg-a);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  /* ==========================================================
+     3. ОБЩАЯ ТИПОГРАФИКА
+     ========================================================== */
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: 0.2px;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4.2vw, 3.1rem);
+  }
+
+  h3 {
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    font-weight: 600;
+  }
+
+  /* Курсив на ключевом слове в заголовке — акцент без цвета, через начертание */
+  em.accent-word {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  p {
+    margin: 0;
+    font-size: clamp(1rem, 1.1vw, 1.15rem);
+  }
+
+  .lede {
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    max-width: 42em;
+  }
+
+  .fine-print {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    letter-spacing: 0.02em;
+  }
+
+  /* Декоративный разделитель "· · ·" между смысловыми частями блока */
+  .divider {
+    text-align: center;
+    letter-spacing: 0.6em;
+    font-size: 1.1rem;
+    opacity: 0.5;
+    padding-left: 0.6em; /* компенсация letter-spacing, чтобы не съезжало по центру */
+  }
+
+  /* ==========================================================
+     4. КНОПКИ И ССЫЛКИ
+     ========================================================== */
+
+  /* Главная кнопка записи — коралловая, скруглённая */
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    padding: 1.05em 2.3em;
+    border-radius: var(--radius-btn);
+    transition: background-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-1px);
+  }
+
+  /* Второстепенная ссылка-заглушка: "Читать", "Смотреть", "Узнать" */
+  .btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .btn-text:hover {
+    border-bottom-color: currentColor;
+  }
+
+  /* ==========================================================
+     5. ОБЩИЙ КАРКАС СЕКЦИЙ (для блоков 2-7)
+     ========================================================== */
+  .section {
+    padding: var(--section-padding-y) var(--container-padding-x);
+  }
+
+  .section--a {
+    background-color: var(--color-bg-a);
+  }
+
+  .section--b {
+    background-color: var(--color-bg-b);
+  }
+
+  .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+  }
+
+  .section-head {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .section-head h2 {
+    margin-bottom: 1rem;
+  }
+
+  /* ==========================================================
+     6. ФОТО-ПЛЕЙСХОЛДЕРЫ
+     Пока нет настоящих фото — показываем подпись "фото".
+     Как заменить на реальное фото — см. инструкцию в конце
+     разговора с Клодом (или просто попросите заменить).
+     ========================================================== */
+  .photo-placeholder {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--font-body);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+  }
+
+  /* Плейсхолдер на бежевом фоне (блок 3 "Как я работаю") */
+  .photo-placeholder--warm {
+    aspect-ratio: 4 / 5;
+    background-color: var(--color-card-b);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-photo);
+    color: var(--color-text);
+    opacity: 0.55;
+  }
+
+  /* Настоящее фото в блоке "Как я работаю" (пришло на смену плейсхолдеру).
+     Обёртка задаёт форму: на телефоне — пропорция 4/5, на широких
+     экранах — высота ровно как у текста слева (см. медиа-запрос),
+     чтобы низ фото и низ текста совпадали. */
+  .how-i-work__photo-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius-photo);
+  }
+
+  .how-i-work__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 15%;
+  }
+
+  /* ==========================================================
+     ШАПКА С ИМЕНЕМ (над первым экраном)
+     ========================================================== */
+  .site-header {
+    position: relative;
+    z-index: 3;
+    padding: 1.75rem var(--container-padding-x) 0;
+    max-width: var(--container-width);
+    margin: 0 auto;
+  }
+
+  .site-header .name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--color-text-on-dark);
+  }
+
+  /* ==========================================================
+     БЛОК 1. ПЕРВЫЙ ЭКРАН (hero) — тёмный, с тёплым свечением
+     Устройство: .hero__inner делит экран на текст и "визуал"
+     (круг + фото). На телефоне визуал сверху, текст под ним
+     (колонка). На широких экранах — в две колонки, текст слева,
+     визуал справа (см. медиа-запрос в конце файла).
+     ========================================================== */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* обрезает "вылезающее" свечение по границе экрана */
+    background-color: var(--color-hero-bg);
+  }
+
+  .hero__inner {
+    flex: 1;
+    width: 100%; /* без этого margin:auto у .container ломает растяжение внутри flex-колонки */
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- Фото на всю высоту hero-секции + тёплое свечение позади --- */
+  .hero__visual {
+    order: -1; /* на телефоне визуал показываем ПЕРВЫМ, текст — под ним */
+    position: relative;
+    width: 100%;
+    height: 58vh; /* на телефоне — полоса на всю ширину сверху */
+    overflow: hidden;
+    /* тот же цвет, что и фон секции — там, где свечение уже погасло
+       до нуля, край рамки сливается со страницей без всякой границы */
+    background-color: var(--color-hero-bg);
+  }
+
+  /* Тёплое свечение — позади фигуры (z-index ниже фото), подсвечивает
+     силуэт по контуру там, где сквозь mix-blend-mode "просвечивает"
+     чёрный фон снимка. Градиент гарантированно гаснет до нуля ещё
+     ДО края рамки (обрезка идёт по .hero__visual), поэтому никакой
+     видимой границы не остаётся. Двигаете --glow-x/--glow-y (позиция,
+     в % от рамки с фото) и --glow-blur (мягкость). */
+  :root {
+    --glow-x: 68%;  /* смещено ближе к центру фигуры — яркое пятно
+                       перекрывает часть лица крупным графичным
+                       пятном, как в референсе */
+    --glow-y: 28%;
+    --glow-blur: 24px;
+  }
+
+  .hero__glow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    filter: blur(var(--glow-blur));
+    background: radial-gradient(
+      circle at var(--glow-x) var(--glow-y),
+      rgba(255, 181, 107, 0.95) 0%,
+      rgba(252, 95, 43, 0.85) 22%,
+      rgba(252, 95, 43, 0.55) 38%,
+      rgba(252, 95, 43, 0.2) 52%,
+      rgba(252, 95, 43, 0) 64%
+    );
+  }
+
+  /* Фото — чёрно-белое, фон на нём почти чёрный. Весь тёплый цвет
+     даёт только .hero__glow позади через mix-blend-mode:lighten:
+     там, где пиксель фото темнее свечения/фона за ним, побеждает
+     более светлый — отсюда и чёрный фон "растворяется", и яркое
+     пятно на части лица. Само фото не размыто и не обрезано маской —
+     только настоящей обрезкой кадра через object-fit:cover
+     (см. object-position ниже, им двигаете, какая часть фото видна). */
+  .hero__photo {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% 20%;
+    mix-blend-mode: lighten;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    padding: clamp(2rem, 5vw, 3rem) var(--container-padding-x) clamp(3rem, 8vw, 5rem);
+  }
+
+  .hero__title {
+    max-width: 16em;
+    margin-bottom: 1.75rem;
+    color: var(--color-text-on-dark);
+    font-weight: 300;
+    font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+  }
+
+  .hero__lede {
+    color: var(--color-text-on-dark);
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero__cta-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .hero__cta-group .fine-print {
+    color: var(--color-text-on-dark);
+    opacity: 0.75;
+  }
+
+  /* ==========================================================
+     БЛОК 2. УЗНАВАНИЕ
+     ========================================================== */
+  .recognize__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 3rem;
+  }
+
+  .recognize__list p {
+    font-family: var(--font-heading);
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-weight: 400;
+    line-height: 1.35; /* у крупного засечного шрифта обычный межстрочный (1.65) смотрится слишком просторно */
+    max-width: 34em;
+  }
+
+  .recognize__closing {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+    line-height: 1.35;
+    max-width: 26em;
+    margin: 1.5rem auto 0;
+  }
+
+  /* ==========================================================
+     БЛОК 3. КАК Я РАБОТАЮ (с местом под фото)
+     ========================================================== */
+  .how-i-work {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    align-items: stretch; /* фото растягивается по высоте текста (см. .how-i-work__photo-wrap) */
+  }
+
+  .how-i-work__text p {
+    margin-bottom: 1.5rem;
+  }
+
+  .how-i-work__text p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ==========================================================
+     БЛОК 4. КРОМЕ СЕССИЙ
+     ========================================================== */
+  .beyond-sessions__intro {
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    max-width: 42em;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .card {
+    border-radius: var(--radius-card);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .card--a {
+    background-color: var(--color-card-a);
+  }
+
+  .card--b {
+    background-color: var(--color-card-b);
+  }
+
+  .card h3 {
+    margin-bottom: 0.2rem;
+  }
+
+  .card .btn-text {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+
+  /* ==========================================================
+     БЛОК 5. КАК ПОСТРОЕНА РАБОТА (цены)
+     ========================================================== */
+  .pricing__intro {
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    max-width: 42em;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .pricing-card {
+    background-color: var(--color-card-a);
+    border-radius: var(--radius-card);
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .pricing-card h3 {
+    font-size: 1.25rem;
+  }
+
+  .pricing-card .btn-primary {
+    margin-top: auto;
+    align-self: flex-start;
+    padding: 0.85em 1.8em;
+    font-size: 0.95rem;
+  }
+
+  /* ==========================================================
+     БЛОК 6. ЕЖЕДНЕВНАЯ ОПОРА
+     (переиспользует .card-grid и .card из блока 4)
+     ========================================================== */
+  .daily-support__intro {
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    max-width: 42em;
+  }
+
+  /* ==========================================================
+     БЛОК 7. ФИНАЛЬНЫЙ ПРИЗЫВ
+     ========================================================== */
+  .final-cta {
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    max-width: 20em;
+    margin: 0 auto 1.5rem;
+  }
+
+  .final-cta__lede {
+    max-width: 38em;
+    margin: 0 auto 2.5rem;
+  }
+
+  .final-cta .btn-primary {
+    margin-bottom: 0.9rem;
+  }
+
+  .final-cta__divider {
+    margin: 2.75rem 0 1.75rem;
+  }
+
+  .final-cta__closing {
+    max-width: 36em;
+    margin: 0 auto;
+    opacity: 0.85;
+  }
+
+  /* ==========================================================
+     ПОДВАЛ
+     ========================================================== */
+  .site-footer {
+    text-align: center;
+    padding: 2.5rem var(--container-padding-x) 3rem;
+    font-size: 0.85rem;
+    opacity: 0.55;
+    background-color: var(--color-bg-a);
+  }
+
+  /* ==========================================================
+     7. АДАПТИВНОСТЬ (планшет и десктоп)
+     На телефоне всё в одну колонку по умолчанию (см. стили выше).
+     Начиная с этих ширин экрана — раскладка в несколько колонок.
+     ========================================================== */
+  @media (min-width: 640px) {
+    .hero__cta-group {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 860px) {
+    .how-i-work {
+      grid-template-columns: 1.3fr 1fr;
+    }
+
+    .how-i-work__photo-wrap {
+      aspect-ratio: auto; /* высота больше не фиксирована пропорцией... */
+      height: 100%;        /* ...а равна высоте текстовой колонки слева */
+    }
+
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Первый экран на широких экранах: текст слева, фото — справа,
+       во всю высоту секции (stretch по умолчанию в flex-row) */
+    .hero__inner {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .hero__content {
+      order: 1; /* на широких экранах текст слева */
+      flex: 1 1 auto;
+      max-width: 34em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero__visual {
+      order: 2; /* на широких экранах — узкая полоса фото справа */
+      flex: 0 0 30%; /* ширина полоски. Больше число = шире */
+      max-width: 380px;
+      height: auto; /* растягивается на всю высоту благодаря align-items:stretch */
+    }
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- ============================================================
+       БЛОК 1. ПЕРВЫЙ ЭКРАН (hero)
+       Чтобы поставить новое фото: замените src у картинки ниже
+       (класс hero__photo) на своё изображение.
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <header class="site-header">
+      <span class="name">Анна Россиева · психодинамический коуч, психолог-преподаватель психологии</span>
+    </header>
+
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <h1 class="hero__title">Когда хочется <em class="accent-word">иначе</em>, но пока непонятно, как.</h1>
+        <p class="lede hero__lede">Помогаю найти опору и путь в переменах: в профессии, в отношениях с собой, в сложных ситуациях на работе. Через психодинамический подход и бережный разговор, а не готовые советы.</p>
+        <div class="hero__cta-group">
+          <a class="btn-primary" href="https://t.me/rossieva" target="_blank" rel="noopener">Записаться на разговор&nbsp;→</a>
+          <span class="fine-print">бесплатная встреча, 20&nbsp;минут</span>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero__glow"></div>
+        <img class="hero__photo" src="images/hero-blazer.png" alt="Анна Россиева">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       БЛОК 2. УЗНАВАНИЕ
+       ============================================================ -->
+  <section class="section section--b" id="recognize">
+    <div class="container">
+      <div class="section-head">
+        <h2>Возможно, вы здесь, если</h2>
+      </div>
+      <div class="recognize__list">
+        <p>Если не получается, а главное, не хочется как раньше.</p>
+        <p>Если внутри слышен ваш голос, и он зовёт вас в новое.</p>
+        <p>Когда вам плохо там, где вы сейчас, но все вокруг говорят, что это с вами что-то не так. А вы в это не верите.</p>
+        <p>Когда важно услышать другую точку зрения, бережную.</p>
+      </div>
+      <div class="divider">· · ·</div>
+      <p class="recognize__closing">Куда бы вы ни шли, с этим не обязательно разбираться в одиночку.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       БЛОК 3. КАК Я РАБОТАЮ
+       ============================================================ -->
+  <section class="section section--a" id="how-i-work">
+    <div class="container">
+      <div class="section-head">
+        <h2>Как я работаю</h2>
+      </div>
+      <div class="how-i-work">
+        <div class="how-i-work__text">
+          <p>Я не даю готовых советов. Мой подход психодинамический: мы идём вглубь, к тому, что на самом деле управляет вашими решениями и состоянием.</p>
+          <p>Рядом со мной люди находят свою опору. Начинают видеть связи, которых не замечали, и решаются действовать иначе. Замечают привычки, которые когда-то помогали, а теперь тормозят. И постепенно возвращают себе то, ради чего всё и затевается, удовольствие от жизни.</p>
+          <p>Психодинамическое образование и годы работы руководителем: поэтому со мной можно говорить и о внутреннем, и о реальном, о карьере, отношениях, выборе. Не нужно объяснять, как устроена работа изнутри, я это знаю.</p>
+        </div>
+        <div class="how-i-work__photo-wrap">
+          <img class="how-i-work__photo" src="images/how-i-work-v2.png" alt="Анна Россиева">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       БЛОК 4. КРОМЕ СЕССИЙ
+       ============================================================ -->
+  <section class="section section--b" id="beyond-sessions">
+    <div class="container">
+      <div class="section-head">
+        <h2>Кроме сессий</h2>
+        <p class="lede beyond-sessions__intro">Есть темы, в которых я работаю особенно глубоко. Одна из них: токсичные системы на работе. Как их распознать, как сохранить себя и как уйти с достоинством. Об этом моя книга и комикс «Ничего личного».</p>
+      </div>
+      <div class="card-grid">
+        <div class="card card--a">
+          <h3>Книга «Не сходишь с ума»</h3>
+          <p>История и метод: как устроены токсичные рабочие системы, почему из них так трудно уйти и как выйти, сохранив себя. Основана на реальном опыте, моём и моих клиентов.</p>
+          <a class="btn-text" href="#">Читать&nbsp;→</a>
+        </div>
+        <div class="card card--b">
+          <h3>Комикс «Ничего личного»</h3>
+          <p>Короткие иллюстрированные сюжеты о жизни в офисе: узнаваемые ситуации и разбор, что происходит и как можно иначе. Без осуждения, с юмором и бережностью.</p>
+          <a class="btn-text" href="#">Смотреть&nbsp;→</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       БЛОК 5. КАК ПОСТРОЕНА РАБОТА
+       ============================================================ -->
+  <section class="section section--a" id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <h2>Как построена работа</h2>
+        <p class="lede pricing__intro">Начать можно с бесплатного разговора, чтобы понять, подходим ли мы друг другу. Без обязательств.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Знакомство · 20&nbsp;минут, бесплатно</h3>
+          <p>Короткая встреча, чтобы вы рассказали, что вас привело, а я как могу быть полезна. Иногда этого уже достаточно, чтобы что-то прояснилось.</p>
+          <a class="btn-primary" href="https://t.me/rossieva" target="_blank" rel="noopener">Записаться&nbsp;→</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Разовая сессия · 60&nbsp;минут · 5&nbsp;000&nbsp;₽</h3>
+          <p>Когда есть конкретный вопрос, с которым хочется разобраться здесь и сейчас.</p>
+          <a class="btn-primary" href="https://t.me/rossieva" target="_blank" rel="noopener">Записаться&nbsp;→</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Программа · 10&nbsp;сессий · 40&nbsp;000&nbsp;₽</h3>
+          <p>Для глубокой работы, когда за запросом стоит что-то большее, и важно пройти путь, а не получить быстрый ответ. Цена сессии в программе выгоднее.</p>
+          <a class="btn-primary" href="https://t.me/rossieva" target="_blank" rel="noopener">Записаться&nbsp;→</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       БЛОК 6. ЕЖЕДНЕВНАЯ ОПОРА
+       ============================================================ -->
+  <section class="section section--b" id="daily-support">
+    <div class="container">
+      <div class="section-head">
+        <h2>Каждый день, а не только на сессии</h2>
+        <p class="lede daily-support__intro">Не всё требует личной работы, иногда нужна поддержка под рукой, на каждый день. Я собрала два бережных инструмента, которые помогают не потерять себя в потоке.</p>
+      </div>
+      <div class="card-grid">
+        <div class="card card--a">
+          <h3>Inside. «Внутри. Твоя опора»</h3>
+          <p>Приложение для женщин, про возвращение к себе. Мягкие ежедневные практики, которые помогают услышать свой голос, когда его заглушили тревога, усталость или чужие ожидания.</p>
+          <a class="btn-text" href="#">Узнать&nbsp;→</a>
+        </div>
+        <div class="card card--b">
+          <h3>Steady. «Держу курс»</h3>
+          <p>Спутник для тех, кто в сложной рабочей среде и пока не может уйти. Помогает распознавать, что происходит, сохранять опору и держать курс, день за днём.</p>
+          <a class="btn-text" href="#">Узнать&nbsp;→</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       БЛОК 7. ФИНАЛЬНЫЙ ПРИЗЫВ
+       ============================================================ -->
+  <section class="section section--a final-cta" id="final-cta">
+    <div class="container">
+      <h2>Если вы дочитали до сюда, возможно, это неслучайно</h2>
+      <p class="lede final-cta__lede">Иногда самое трудное это разрешить себе начать. Не обязательно знать заранее, куда всё придёт. Достаточно одного разговора, чтобы понять, в какую сторону хочется идти.</p>
+      <div>
+        <a class="btn-primary" href="https://t.me/rossieva" target="_blank" rel="noopener">Записаться на знакомство&nbsp;→</a>
+        <div class="fine-print">20&nbsp;минут, бесплатно, без обязательств</div>
+      </div>
+      <div class="divider final-cta__divider">· · ·</div>
+      <p class="final-cta__closing">Если пока не готовы к разговору, можно начать с книги или просто побыть рядом с этими историями. В своём темпе.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    © Анна Россиева
+  </footer>
+
+</body>
+</html>
