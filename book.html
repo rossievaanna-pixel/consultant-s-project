@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>«Не сходишь с ума» — Анна Россиева</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+  /* Те же переменные, что и на главной странице — чтобы страница
+     книги смотрелась частью одного сайта. Хотите поменять цвет
+     или шрифт — меняйте здесь же, как и в index.html. */
+  :root {
+    --color-bg:        #EDE8DF;
+    --color-text:      #1A1A1A;
+    --color-accent:    #FC5F2B;
+    --color-accent-hover: #E14E1D;
+    --color-line:      rgba(26, 26, 26, 0.15);
+    --font-heading: "Cormorant Garamond", serif;
+    --font-body: "Jost", sans-serif;
+    --container-width: 700px;
+    --container-padding-x: clamp(1.5rem, 6vw, 3rem);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+
+  .container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding-x);
+  }
+
+  .page-header {
+    padding: 2rem 0 1rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .back-link:hover {
+    border-bottom-color: currentColor;
+  }
+
+  .book-title {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    line-height: 1.15;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  .book-subtitle {
+    font-size: 1.05rem;
+    opacity: 0.7;
+    margin-bottom: 3rem;
+  }
+
+  .book-body {
+    padding-bottom: 6rem;
+  }
+
+  .book-body p {
+    font-size: 1.1rem;
+    margin: 0 0 1.5rem;
+  }
+
+  /* Заметка-заглушка, пока текста книги ещё нет.
+     Когда текст будет готов — замените .coming-soon на главы книги:
+     обычные <p> абзацы, или <h2> на начало каждой главы. */
+  .coming-soon {
+    border: 1px solid var(--color-line);
+    border-radius: 12px;
+    padding: 2rem;
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <header class="page-header">
+      <a class="back-link" href="index.html">← Назад на главную</a>
+    </header>
+
+    <main class="book-body">
+      <h1 class="book-title">Не сходишь с ума</h1>
+      <p class="book-subtitle">Анна Россиева</p>
+
+      <!-- Когда текст книги будет готов, замените блок ниже на главы -->
+      <p class="coming-soon">Текст книги скоро появится здесь.</p>
+    </main>
+  </div>
+
+</body>
+</html>
