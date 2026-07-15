@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inside — приложение для женщин про возвращение к себе. 21 день мягких ежедневных практик на основе концепции Памелы Левин.">
+  <title>Inside — Анна Россиева</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #e0e0e0;
+      --bg: #fff;
+      --accent: #1a1a1a;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      padding: 28px 0 0;
+      margin-bottom: 64px;
+    }
+    .nav a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      margin-bottom: 64px;
+    }
+    .hero-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    /* ── CTA BUTTONS ── */
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--text);
+      color: #fff;
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      padding: 13px 28px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .btn-primary:hover { opacity: 0.8; }
+    .btn-ghost {
+      display: inline-block;
+      color: var(--text);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      padding: 13px 0;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.15s;
+    }
+    .btn-ghost:hover { border-color: var(--text); }
+
+    .note-free {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: -32px;
+      margin-bottom: 48px;
+    }
+
+    /* ── DIVIDER ── */
+    .div {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 56px 0;
+    }
+
+    /* ── SECTION ── */
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* ── BODY TEXT ── */
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 300;
+      line-height: 1.25;
+      margin-bottom: 20px;
+    }
+    h2 em { font-style: italic; }
+    p {
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 20px;
+      max-width: 580px;
+    }
+    p.muted { color: var(--muted); }
+
+    /* ── TRACKS ── */
+    .tracks {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 32px 0;
+    }
+    .track {
+      display: flex;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .track:first-child { border-top: 1px solid var(--border); }
+    .track-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--muted);
+      min-width: 24px;
+      padding-top: 2px;
+    }
+    .track-body {}
+    .track-title {
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .track-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── FORMAT BLOCK ── */
+    .format-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+      margin: 32px 0;
+    }
+    @media (max-width: 540px) {
+      .format-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+    .format-item {}
+    .format-time {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .format-text {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 32px 0;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 16px;
+    }
+    .price-row:first-child { border-top: 1px solid var(--border); }
+    .price-name { font-size: 15px; }
+    .price-note { font-size: 13px; color: var(--muted); }
+    .price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+    .price-free { color: var(--muted); font-size: 14px; }
+
+    /* ── QUOTE ── */
+    .quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 3vw, 26px);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.45;
+      color: var(--text);
+      margin: 40px 0;
+      padding-left: 24px;
+      border-left: 1px solid var(--border);
+    }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 20px;
+      border: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    /* ── FOOTER NAV ── */
+    .footer {
+      padding: 40px 0 60px;
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+    }
+    .footer a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .footer a:hover { color: var(--text); }
+    .footer-sep { margin: 0 8px; color: var(--border); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .wrap { padding: 0 20px; }
+      .nav { margin-bottom: 48px; }
+      .hero { margin-bottom: 48px; }
+      .cta-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html">← Анна Россиева</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">Приложение · Ежедневная практика</div>
+    <h1 class="hero-title">Inside.<br><em>Внутри. Твоя опора.</em></h1>
+    <p class="hero-sub">
+      Приложение для женщин, которые хотят вернуться к себе. Не починить себя — а вернуться. Мягко, каждый день, по десять минут.
+    </p>
+    <div class="cta-row">
+      <!-- ЗАМЕНИТЕ ССЫЛКУ НА ВАШУ ССЫЛКУ ОТ TRIBUTE -->
+      <a href="https://web.tribute.tg/p/A04" class="btn-primary">Начать · 499 ₽/месяц</a>
+      <!-- ЗАМЕНИТЕ ССЫЛКУ НА ВАШУ ССЫЛКУ НА PWA -->
+      <a href="https://stellar-naiad-2e0010.netlify.app" class="btn-ghost">Попробовать бесплатно →</a>
+    </div>
+    <p class="note-free">Первый день — бесплатно. Без обязательств.</p>
+  </section>
+
+  <hr class="div">
+
+  <!-- ЧТО ЭТО -->
+  <section>
+    <div class="section-label">О чём Inside</div>
+    <h2>Иногда нужна не терапия.<br><em>Нужна ежедневная опора.</em></h2>
+    <p>
+      Inside — это 21-дневный марафон самоподдержки. Основа — концепция психолога Памелы Левин о стадиях развития. Каждая из нас в детстве проходила разные этапы. Если где-то не хватило поддержки — это оставляет след во взрослой жизни.
+    </p>
+    <p>
+      Inside помогает мягко вернуться к этим местам и дать себе то, чего не хватило. Не через насилие — через ежедневную практику.
+    </p>
+
+    <blockquote class="quote">
+      «С тобой всё в порядке. Просто ты отвыкла себя слышать. Твоя опора всегда была там.»
+    </blockquote>
+  </section>
+
+  <hr class="div">
+
+  <!-- КАК УСТРОЕН ДЕНЬ -->
+  <section>
+    <div class="section-label">Как устроен каждый день</div>
+    <h2>Три момента.<br><em>Десять минут.</em></h2>
+    <div class="format-grid">
+      <div class="format-item">
+        <div class="format-time">Утро</div>
+        <div class="format-text">Аффирмация дня и одно маленькое задание. Что-то, что можно сделать прямо сегодня.</div>
+      </div>
+      <div class="format-item">
+        <div class="format-time">День</div>
+        <div class="format-text">Короткое напоминание. Один вопрос к себе или одно наблюдение.</div>
+      </div>
+      <div class="format-item">
+        <div class="format-time">Вечер</div>
+        <div class="format-text">Телесный ритуал. 5–10 минут, чтобы прийти в себя после дня.</div>
+      </div>
+    </div>
+    <p class="muted">Всё начинается с диагностики — 30 коротких вопросов, которые помогают найти твой трек.</p>
+  </section>
+
+  <hr class="div">
+
+  <!-- ТРЕКИ -->
+  <section>
+    <div class="section-label">Пять треков</div>
+    <h2>Найди свой.<br><em>Диагностика покажет.</em></h2>
+    <div class="tracks">
+      <div class="track">
+        <div class="track-num">1</div>
+        <div class="track-body">
+          <div class="track-title">Право Быть</div>
+          <div class="track-desc">Безопасность, базовое доверие, право просто существовать — без постоянного напряжения.</div>
+        </div>
+      </div>
+      <div class="track">
+        <div class="track-num">2</div>
+        <div class="track-body">
+          <div class="track-title">Право Справляться</div>
+          <div class="track-desc">Перфекционизм, синдром самозванки, зависимость самооценки от чужих оценок.</div>
+        </div>
+      </div>
+      <div class="track">
+        <div class="track-num">3</div>
+        <div class="track-body">
+          <div class="track-title">Право Верить</div>
+          <div class="track-desc">Инициатива, игра, творчество. Когда страшно пробовать — и внутренний критик комментирует всё.</div>
+        </div>
+      </div>
+      <div class="track">
+        <div class="track-num">4</div>
+        <div class="track-body">
+          <div class="track-title">Право Делать</div>
+          <div class="track-desc">Границы, «нет» и «хочу». Когда трудно отказывать и сложно понять, чего именно хочется.</div>
+        </div>
+      </div>
+      <div class="track">
+        <div class="track-num">5</div>
+        <div class="track-body">
+          <div class="track-title">Право на Личность</div>
+          <div class="track-desc">Идентичность, ценности, близость без слияния. Вопрос «кто я» — и ответ, который твой.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- СТОИМОСТЬ -->
+  <section>
+    <div class="section-label">Стоимость</div>
+    <h2>Простая подписка.<br><em>Без обязательств.</em></h2>
+    <div class="pricing">
+      <div class="price-row">
+        <div>
+          <div class="price-name">Попробовать</div>
+          <div class="price-note">Диагностика + первый день</div>
+        </div>
+        <div class="price-free">бесплатно</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="price-name">1 месяц</div>
+          <div class="price-note">Один трек · 21 день</div>
+        </div>
+        <!-- ЗАМЕНИТЕ ССЫЛКУ -->
+        <a href="https://web.tribute.tg/p/A04" class="price-amount" style="text-decoration:none;color:inherit;">499 ₽ →</a>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="price-name">3 месяца</div>
+          <div class="price-note">Три трека · лучшая цена на трек</div>
+        </div>
+        <!-- ЗАМЕНИТЕ ССЫЛКУ -->
+        <a href="https://web.tribute.tg/p/A05" class="price-amount" style="text-decoration:none;color:inherit;">1 190 ₽ →</a>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="price-name">12 месяцев</div>
+          <div class="price-note">Все пять треков · доступ на год</div>
+        </div>
+        <!-- ЗАМЕНИТЕ ССЫЛКУ -->
+        <a href="https://web.tribute.tg/p/A06" class="price-amount" style="text-decoration:none;color:inherit;">3 490 ₽ →</a>
+      </div>
+    </div>
+
+    <div class="cta-row" style="margin-top: 32px;">
+      <a href="https://stellar-naiad-2e0010.netlify.app" class="btn-primary">Начать бесплатно</a>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ДИСКЛЕЙМЕР -->
+  <div class="disclaimer">
+    Inside — это инструмент самоподдержки, а не психотерапия и не замена работе со специалистом. Если вам сейчас очень тяжело — пожалуйста, обратитесь к психологу или психиатру. Телефон доверия (бесплатно): 8-800-2000-122.
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <a href="index.html">Анна Россиева</a>
+    <span class="footer-sep">·</span>
+    <a href="book.html">Книга</a>
+    <span class="footer-sep">·</span>
+    <a href="https://telegram.me/rossieva">Telegram</a>
+  </footer>
+
+</div>
+</body>
+</html>
